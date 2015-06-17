@@ -1,0 +1,62 @@
+<template name="userSearch">
+ {{#if currentUser}}
+ <div class="row">
+  <div class="col-xs-6">
+   <div class="search-input">
+    {{> esInput index="userIndex" placeholder="Search..." }}
+   </div>
+  </div>
+  <div class="col-xs-6">
+   {{> notifications}}
+  </div>
+ </div>
+ <div class="row">
+  {{> EsSearch}}
+ </div>
+ {{else}}
+   {{> GuestGrid}}
+ {{/if}}
+</template>
+
+<template name="EsSearch">
+ <div class="col-xs-12">
+  <table class="table table-striped table-hover">
+   <thead>
+    <tr>
+     <th>Name</th>
+     <th>Score</th>
+    </tr>
+   </thead>
+   <tbody>
+    {{#ifEsInputIsEmpty index="userIndex"}}
+    <div>Search for players</div>
+    {{/ifEsInputIsEmpty}} {{#ifEsIsSearching index="userIndex"}}
+    <div>Loading...</div>
+    {{else}} {{#esEach index="userIndex"}} {{> userPreview}} {{/esEach}} {{> esLoadMoreButton
+    index="userIndex"}} {{/ifEsIsSearching}} {{#ifEsHasNoResults index="userIndex"}}
+    <div class="no-results">No results found!</div>
+    {{/ifEsHasNoResults}}
+   </tbody>
+  </table>
+ </div>
+</template>
+
+<template name="userPreview">
+ <tr>
+  <td style="vertical-align:middle">
+   {{#if updated}}<span class="glyphicon glyphicon-warning-sign"></span>{{/if}}
+   {{#if updated}}
+   <a class="profile_link" style="font-weight: bold;" href="/user/{{_id}}" data-toggle="tooltip"
+   data-placement="top" title="The user has been updated her profile">{{username}}</a>   {{else}}
+   <a id="profile_link" href="/user/{{_id}}">{{username}}</a> {{/if}}
+  </td>
+  <td style="vertical-align:middle">
+   <i id="like" class="glyphicon {{#if liked}} glyphicon-thumbs-up
+        {{else}}glyphicon-thumbs-down{{/if}}" data-toggle="tooltip" title="like the user">
+   </i>
+  </td>
+  <td style="vertical-align:middle">
+   <img src="{{gravatarLink}}" class="img-circle" alt="the-brains">
+  </td>
+ </tr>
+</template>

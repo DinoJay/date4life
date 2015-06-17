@@ -1,0 +1,48 @@
+<template name="wall">
+ <div class="panel panel-default">
+  <div class="panel-body">
+   <h3>User's Wall</h3>
+   <hr class="">
+   <ul class="commentList actionBox">
+    {{#each wallPosts}} {{> pmView}} {{/each}}
+   </ul>
+   <form class="form-inline" role="form">
+    <div class="form-group">
+     <input id="comment_input" class="form-control" type="text" placeholder="Your comments"
+     style="width: 100%;" />
+    </div>
+    <div class="form-group">
+     <button id="submit_comment" class="btn btn-default">Add</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</template>
+
+<template name="pmView">
+ {{#if alive}}
+ <li>
+  <div class="row row-no-margin-left">
+   <div class="col-xs-6">
+    <div class="commenterImage">
+     <img src="{{gravatarLink}}" />
+    </div>
+    <div class="commentText">
+     <p class="">{{body}} </p>
+     <span class="date sub-text">
+       {{sender.username}}, {{date}}
+    </span>
+    </div>
+   </div>
+ {{#if wallOwner}}
+   <div class="col-xs-6">
+    <button id="del-post-btn" type="button" class="close"
+        aria-label="Close">
+     <span aria-hidden="true">×</span>
+    </button>
+   </div>
+ {{/if}}
+  </div>
+ </li>
+ {{/if}}
+</template>
