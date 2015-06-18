@@ -225,12 +225,14 @@ Meteor.methods({
 });
 
 Accounts.validateLoginAttempt(function(options) {
-  console.log("User login attempt", options);
-  return !options.user.banned;
+  // console.log("User login attempt", options);
+  // return !options.user.banned;
+  return true;
 });
 
 Accounts.onCreateUser(function(options, user) {
-  console.log("user", options);
+  console.log("XXXXXXXuser", options.profile.username);
+
   Walls.insert({
     userId: user._id,
     posts: []
@@ -247,16 +249,17 @@ Accounts.onCreateUser(function(options, user) {
   user.attentions = [];
 
   user.profile = {};
-  user.profile.name = options.profile.name.toLowerCase();
-  user.profile.surname = options.profile.surname.toLowerCase();
+
   user.profile.username = options.profile.username.toLowerCase();
   // TODO: radio boxes
   user.profile.gender = options.profile.gender.toLowerCase();
   user.profile.updated = false;
 
-  user.profile.age = null;
+  user.profile.age = options.profile.gender.toLowerCase();
   user.profile.location = null;
   user.profile.bio = null;
+  user.profile.name = null;
+  user.profile.surname = null;
 
 
   //var tmpUser = Meteor.users.find({"_id": user._id});

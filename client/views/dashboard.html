@@ -37,7 +37,7 @@
       </a>
      </li>
      <li class="list-group-item text-right">
-      <span class="pull-left"><strong class="">First Name</strong></span>
+      <span class="pull-left"><strong class="">First Name:</strong></span>
       <a class="editable">
         {{#with user}}
           {{> editableText collection="users" field="profile.name"
@@ -46,7 +46,7 @@
       </a>
      </li>
      <li class="list-group-item text-right">
-      <span class="pull-left"><strong class="">Surname</strong></span>
+      <span class="pull-left"><strong class="">Surname:</strong></span>
       <a class="editable">
         {{#with user}}
           {{> editableText collection="users" field="profile.surname"
@@ -55,17 +55,22 @@
       </a>
      </li>
      <li class="list-group-item text-right">
-      <span class="pull-left">
-         <strong class="">Role: </strong></span> Pet Sitter
+      <span class="pull-left"> <strong class="">Age: </strong></span>
+      <a class="editable">
+        {{#with user}}
+          {{> editableText collection="users" field="profile.age"
+          wysiwyg=true afterUpdate="notifyUsers"}}
+        {{/with}}
+      </a>
      </li>
-    </ul>
-    <ul class="list-group">
-     <li class="list-group-item text-muted">Stats</li>
      <li class="list-group-item text-right">
-      <span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014
-     </li>
-     <li class="list-group-item text-right">
-      <span class="pull-left"><strong class="">Last seen</strong></span> Yesterday
+      <span class="pull-left"> <strong class="">Gender: </strong></span>
+      <a class="editable">
+        {{#with user}}
+          {{> editableText collection="users" field="profile.gender"
+          wysiwyg=true afterUpdate="notifyUsers"}}
+        {{/with}}
+      </a>
      </li>
     </ul>
     <div class="panel panel-default">
@@ -76,6 +81,15 @@
       <a href="http://bootply.com" class="">bootply.com</a>
      </div>
     </div>
+    <ul class="list-group">
+     <li class="list-group-item text-muted">Stats</li>
+     <li class="list-group-item text-right">
+      <span class="pull-left"><strong class="">Joined</strong></span> 2.13.2014
+     </li>
+     <li class="list-group-item text-right">
+      <span class="pull-left"><strong class="">Last seen</strong></span> Yesterday
+     </li>
+    </ul>
     <ul class="list-group">
      <li class="list-group-item text-muted">
       Activity <i class="fa fa-dashboard fa-1x"></i>
@@ -95,14 +109,6 @@
        </span> 78
      </li>
     </ul>
-    <div class="panel panel-default">
-     <div class="panel-heading">Social Media</div>
-     <div class="panel-body"> <i class="fa fa-facebook fa-2x"></i>
-      <i class="fa fa-github fa-2x"></i>
-      <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>
-      <i class="fa fa-google-plus fa-2x"></i>
-     </div>
-    </div>
    </div>
    <div class="col-sm-9" style="">
     <div class="row">
@@ -115,9 +121,9 @@
      {{> likedList}}
     </div>
     {{#if currentUser.admin}}
-      <div class="row">
-       {{> AdminPanel}}
-      </div>
+    <div class="row">
+     {{> AdminPanel}}
+    </div>
     {{/if}}
    </div>
   </div>
@@ -233,7 +239,7 @@
 <template name="likedList">
  <div class="panel panel-default">
   <div class="panel-body">
-   <h3>liked Users</h3>
+   <h3>Liked Users</h3>
    <hr class="">
    <table class="table table-striped table-hover">
     <tbody>

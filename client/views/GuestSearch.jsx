@@ -1,4 +1,3 @@
-"use strict";
 ReactMeteor.createClass({
   templateName: "GuestGrid",
 
@@ -30,9 +29,16 @@ ReactMeteor.createClass({
   retrieveUsers: function(ageRange, gender, loc) {
     console.log("this refs", this.refs);
 
-    let [ min, max ] = ageRange.split("-").map(function(d) {
+    // let [ min, max ] = ageRange.split("-").map(function(d) {
+    //   return parseInt(d);
+    // });
+
+    var split = ageRange.split("-").map(function(d) {
       return parseInt(d);
     });
+
+    var min = split[0];
+    var max = split[1];
 
     var users = Meteor.users.find({
       "profile.age": { $gt: min - 1, $lt: max + 1 },
@@ -62,6 +68,10 @@ ReactMeteor.createClass({
 
     return (
       <div className="container">
+      <div className="page-header">
+        <h1>Search User</h1>
+        <p className="lead"> Explore our interesting user base </p>
+      </div>
         <div className="row" style={{paddingBottom: "20px"}}>
             <form className="form-inline" role="form">
               <div className="col-md-2">

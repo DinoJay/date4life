@@ -33,6 +33,10 @@ Router.route('/dashboard', function() {
     this.render('dashboard');
 });
 
+Router.route('/register', function() {
+    this.render('register');
+});
+
 // Router.onBeforeAction(function () {
 //     if (!Meteor.user() && !Meteor.loggingIn()) {
 //         this.render('home');
@@ -44,6 +48,6 @@ Router.route('/dashboard', function() {
 //     except: ['login']
 // });
 
-Router.route('/(.*)', function () {
-    this.redirect('/catchallpage');
-});
+// Router.route('/(.*)', function () {
+//     this.redirect('/catchallpage');
+// });

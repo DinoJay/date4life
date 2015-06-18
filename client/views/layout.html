@@ -1,75 +1,138 @@
 <head>
-    <title>HTMLxprs Social News</title>
+ <title>HTMLxprs Social News</title>
 </head>
 
 <template name="layout">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="page-header">
-          {{> navbar}}
-        </div>
-      </div>
-    </div>
-      {{> yield}}
-  </div>
+ <div class="container">
+  {{> navbar}} {{> yield}}
+ </div>
 </template>
 
 
 <template name="navbar">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Date 4 Life</a>
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse navbar-menubuilder">
-      <ul class="nav navbar-nav navbar-left">
-        {{#if currentUser}}
-          <li class="active"><a href="/dashboard">Home</a></li>
-        {{/if}}
-        <li class="active"><a href="/search">Search</a></li>
-        <li class="active"><a href="#">About</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        {{> loginButtons}} <!-- here -->
-      </ul>
-    </div>
+ <!-- <div class="navbar navbar-default" role="navigation"> -->
+ <!--  <div class="navbar-header"> -->
+ <!--   <a class="navbar-brand" href="/">Date 4 Life</a> -->
+ <!--   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse"> -->
+ <!--    <span class="sr-only">Toggle navigation</span> -->
+ <!--    <span class="icon-bar"></span> -->
+ <!--    <span class="icon-bar"></span> -->
+ <!--    <span class="icon-bar"></span> -->
+ <!--   </button> -->
+ <!--  </div> -->
+ <!--  <div class="navbar-collapse collapse navbar-menubuilder"> -->
+ <!--   <ul class="nav navbar-nav navbar-left"> -->
+ <!--    {{#if currentUser}} -->
+ <!--    <li class="active"><a href="/dashboard">Home</a></li> -->
+ <!--    {{/if}} -->
+ <!--    <li class="active"><a href="/search">Search</a></li> -->
+ <!--    <li class="active"><a href="#">About</a></li> -->
+ <!--   </ul> -->
+ <!--   <ul class="nav navbar-nav navbar-right"> -->
+ <!--    {{> loginButtons}} -->
+ <!--   </ul> -->
+ <!--  </div> -->
+ <!-- </div> -->
+ <nav class="navbar navbar-default">
+  <div class="navbar-header">
+   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+   aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+   </button>
+   <a class="navbar-brand" href="/">Date4Life</a>
   </div>
+  <div id="navbar" class="navbar-collapse collapse">
+   <ul class="nav navbar-nav">
+    {{#if currentUser}}
+    <li class="active"><a href="/dashboard">Home</a></li>
+    {{/if}}
+    <li><a href="/search">Search</a></li>
+    <li><a href="#">Contact</a></li>
+   </ul>
+   <div class="nav navbar-nav navbar-right">
+    {{> loginButtons}}
+   </div>
+   <!--/.nav-collapse -->
+  </div>
+  <!--/.container-fluid -->
+ </nav>
+ <!--/.nav-collapse -->
 </template>
 
 
 <template name="home">
-  <div class='container'>
-    <div class='row'>
-      <div class='bg-img'>
-        <input class='customized-btn btn-default' type="submit" id="login-button" value="About" onclick="location.href = '/about'" />
-      </div>
-    </div>
-  </div>
+ <div class='bg-img jumbotron'>
+  <!-- <input class='customized-btn btn-default' type="submit" id="login-button" value="About" -->
+  <!-- onclick="location.href = '/about'" /> -->
+  <button class='customized-btn btn-default'>
+   <a href="/register">Register</a>
+  </button>
+ </div>
 </template>
 
 <template name="login">
-  <form id="login-form" action="action">
-    <div>
-      <input type="email" id="login-email" />
-      <input type="password" id="login-password" />
-      <input type="submit" id="login-button" value="About" />
-      {{> notifications}}
-    </div>
-  </form>
+ <form id="login-form" action="action">
+  <div>
+   <input type="email" id="login-email" />
+   <input type="password" id="login-password" />
+   <input type="submit" id="login-button" value="About" /> {{> notifications}}
+  </div>
+ </form>
 </template>
 
 <template name="register">
-    <form id="register-form" action="action">
-      <div>
-       <input type="email" id="account-email" />
-       <input type="password" id="account-password" />
-       <input type="submit" id="create-account" value="Create an Account" />
-     </div>
-   </form>
+ <div class="page-header">
+  <h1>Register</h1>
+  <p class="lead"> Please insert your profile to information to register</p>
+ </div>
+ <div class="row">
+  <form id="register-form" class="form-horizontal">
+   <div class="form-group">
+    <label for="inputEmail" class="control-label col-md-2">Email</label>
+    <div class="col-md-10">
+     <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="inputPassword" class="control-label col-md-2">Password</label>
+    <div class="col-md-10">
+     <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="inputUsername" class="control-label col-md-2">Username</label>
+    <div class="col-md-10">
+     <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="inputAge" class="control-label col-md-2">Age</label>
+    <div class="col-md-10">
+     <input type="number" class="form-control" id="inputAge" placeholder="Age" required>
+    </div>
+   </div>
+   <div class="form-group">
+    <label for="inputGender" class="control-label col-md-2">Gender</label>
+    <div class="col-md-10">
+     <label class="radio-inline">
+      <input type="radio" value="female" name="inputGender">Female
+    </label>
+    <label class="radio-inline">
+      <input type="radio" value="male" name="inputGender">Male
+    </label>
+    <label class="radio-inline">
+      <input type="radio" value="other" name="inputGender" checked="checked">Other
+    </label>
+    </div>
+   </div>
+   <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+     <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+   </div>
+  </form>
+ </div>
 </template>

@@ -105,26 +105,20 @@ if (Meteor.isClient) {
       facebook: ['email'],
     },
     passwordSignupFields: 'EMAIL_ONLY',
-    extraSignupFields: [{
-      fieldName: 'name',
-      fieldLabel: 'Name',
-      validate: function(value, errorFn) {
-        if (value === '') {
-          errorFn('Name must have a value');
-          return false;
-        }
-        return true;
-      }
-    }, {
-      fieldName: 'surname',
-      fieldLabel: 'Surname'
-    }, {
-      fieldName: 'username',
-      fieldLabel: 'Username'
-    }, {
-      fieldName: 'gender',
-      fieldLabel: 'Gender'
-    }]
+    extraSignupFields: [
+      {
+        fieldName: 'username',
+        fieldLabel: 'Username'
+      },
+      {
+        fieldName: 'age',
+        fieldLabel: 'Age'
+      },
+      {
+        fieldName: 'gender',
+        fieldLabel: 'Gender'
+      },
+    ]
   });
 
 }
